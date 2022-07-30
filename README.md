@@ -6,8 +6,8 @@ This example assume that everyting is being done on Ubuntu, But the steps are sa
 
 1. Create a VM in Virtual box. 
 2. Attach it to two Networks. Click on Setting -->  Network --> Adapter and -
-    - Enable Bridge Adapter and select one from Dropdown. so that VM can connect to Internet.
-    - Enable other Adaptor and attach to HOST-ONLY Adaptor and select network from dropdown (Ethernet Adepter). This network is to create a network locally between all the VM within VirtualBox.
+   - Enable Bridge Adapter and select one from Dropdown. so that VM can connect to Internet.
+   - Enable Other Adaptor and attach to HOST-ONLY Adaptor and select network from dropdown (Ethernet Adepter). This network is to create a network locally between all the VM within VirtualBox.
     
 3. Start VM and run following commands on terminal -
     - sudo apt get update
@@ -50,10 +50,12 @@ We have to do all the above steps on all VM we are planning to join K8s Cluster.
 
 ## Clone VM's
 10. Now the Above created VM is ready to get cloned. Follow below steps in Virtualbox -
-   - Select VM you want to clone   --->  Machine  ---> Clone  --->  Give a name to VM and Under "MAC Address Policy"  choose "Generate new MAC Address for all network          adapter"      --->  Linked Clone (to save space otherwise you are free to chosse Full clone)  ---> Clone.
+   - Select VM you want to clone   --->  Machine  ---> Clone  --->  Give a name to VM and Under "MAC Address Policy"  choose "Generate new MAC Address for all network          adapter"   --->  Linked Clone (to save space otherwise you are free to chosse Full clone)  ---> Clone.
    
- 11. Now next step is to change Hostname and set IP Address on all the VM's. Name can be of your choice.
-    - open file  -->  sudo nano /etc/hostname    and change hostname
-    - open file  --> sudo nano /etc/hosts        and change hostname
-    - sudo nano /etc/network/interfaces    , comment enp0s8 network, Reboot VM, check new IP for enp0s8 and update this IP here and uncomment it. 
+ 11. Now next step is to change Hostname and set static IP Address on all the VM's. Static IP (which does not change when machine reboot) address is mandatory in kubernetes and assign name to each host. IP and hostname should be different for each VM.
+ - open file  -->  sudo nano /etc/hostname    and change hostname
+ - open file  --> sudo nano /etc/hosts        and change hostname
+ - sudo nano /etc/network/interfaces    , comment enp0s8 network in this file, Reboot VM, check new IP for enp0s8 and update new IP in this file and uncomment it. 
    
+ 
+**NOTE:-**  During Initializing Master node may need IP Address for Pod network (It will depends on Network you select for Pod, Calico Passes IP ). Please follow the [Kubernetes Documentaion](https://kubernetes.io/docs/home/) Page to know How to insatll Kubelet, kubeadm, kubectl, Initialize Master node and join worker node.
