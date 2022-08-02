@@ -5,9 +5,9 @@ This example assume that everyting is being done on Ubuntu, But the steps are sa
 ## First VM
 
 1. Create a VM in Virtual box. 
-2. Attach it to two Networks. Click on Setting -->  Network --> Adapter and -
-   - Enable Bridge Adapter and select one from Dropdown. so that VM can connect to Internet.
-   - Enable Other Adaptor and attach to HOST-ONLY Adaptor and select network from dropdown (Ethernet Adepter). This network is to create a network locally between all the VM within VirtualBox.
+2. Attach this VM to two Networks. Click on Setting -->  Network --> Adapter then -
+   - Enable Bridge Adapter and select Network one from Dropdown. so that VM can connect to Internet.
+   - Enable Other Adaptor and attach to HOST-ONLY Adaptor (select network from dropdown - Ethernet Adepter). This network is to create a local network between all the VM within VirtualBox.
     
 3. Start VM and run following commands on terminal -
     - sudo apt get update
@@ -19,7 +19,7 @@ This example assume that everyting is being done on Ubuntu, But the steps are sa
 4. update the file ---> sudo nano /etc/fstab  and comment the line which have swap in it.
 
 5. Note IP address of HOST-ONLY network using command "ip addr" in terminal.
-   - Now make following entry in file sudo nano /etc/network/interfaces . we are doing this step to make IP Address static, so that it does not change after reboot.
+   - Now make following entry in file --> sudo nano /etc/network/interfaces (we are doing this step to make IP Address static, so that it does not change after reboot).
       - #configure enp0s8
       - auto enp0s8
       - iface enp0s8 inet static
